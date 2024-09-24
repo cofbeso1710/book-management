@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+*, html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    table {
+      width: 100%;
+      font-size: 14px;
+    }
+  
+    th, td {
+      padding: 10px 5px;
+    }
+  
+    .book-management {
+      display: block;
+      padding: 10px;
+    }
+  
+    form {
+      display: block;
+    }
+  
+    form input, form select {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  }

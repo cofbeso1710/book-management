@@ -1,0 +1,44 @@
+<div class="search-section">
+    <app-input label="Tìm kiếm theo tên" [(ngModel)]="name"></app-input>
+    <app-select label="Lọc theo trạng thái" [(ngModel)]="status" [options]="['Đã đọc', 'Chưa đọc']"></app-select>
+  </div>
+  
+  <table class="book-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên sách</th>
+        <th>Trạng thái</th>
+        <th>Ngày mua</th>
+        <th>Ngày tạo</th>
+        <th>Tùy chọn</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books | filter: name: status">
+        <td>{{ book.id }}</td>
+        <td>
+          <span *ngIf="!book.editing">{{ book.name }}</span>
+          <input *ngIf="book.editing" [(ngModel)]="book.name" />
+        </td>
+        <td [ngClass]="{'read': book.status === 'Đã đọc', 'unread': book.status === 'Chưa đọc'}">
+          <span *ngIf="!book.editing">{{ book.status }}</span>
+          <select *ngIf="book.editing" [(ngModel)]="book.status">
+            <option value="Đã đọc">Đã đọc</option>
+            <option value="Chưa đọc">Chưa đọc</option>
+          </select>
+        </td>
+        <td>
+          <span *ngIf = "!book.editing">{{book.purchaseDate}}</span>
+          <input *ngIf="book.editing" [(ngModel)]="book.purchaseDate" type="date"/>
+        </td>
+        <td>{{ book.createdAt | date: 'short' }}</td>
+        <td>
+          <button *ngIf="!book.editing" (click)="editBook(book)">Sửa</button>
+          <button *ngIf="book.editing" (click)="saveBook(book)">Lưu</button>
+          <button (click)="deleteBook(book.id)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

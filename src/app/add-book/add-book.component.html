@@ -1,0 +1,35 @@
+<form [formGroup]="bookForm" (ngSubmit)="submit()">
+  <div formArrayName="books">
+    <div *ngFor="let book of books.controls; let i=index" [formGroupName]="i" class="book-entry">
+      <label>ID:</label>
+      <input formControlName="id" placeholder="ID sách" />
+      <div *ngIf="book.get('id')?.errors?.['required'] && book.get('id')?.touched" class="error">
+        ID là bắt buộc.
+      </div>
+      <div *ngIf="book.get('id')?.errors?.['maxlength'] && book.get('id')?.touched" class="error">
+        ID không được vượt quá 5 ký tự.
+      </div>
+
+      <label>Tên:</label>
+      <input formControlName="name" placeholder="Tên sách" />
+      <div *ngIf="book.get('name')?.errors?.['required'] && book.get('name')?.touched" class="error">
+        Tên là bắt buộc.
+      </div>
+
+      <label>Ngày mua:</label>
+      <input type="date" formControlName="purchaseDate" />
+      <div *ngIf="book.get('purchaseDate')?.errors?.['invalidDate'] && book.get('purchaseDate')?.touched" class="error">
+        Ngày mua phải nhỏ hơn ngày hiện tại.
+      </div>
+
+      <label>Trạng thái:</label>
+      <select formControlName="status">
+        <option value="Chưa đọc">Chưa đọc</option>
+        <option value="Đã đọc">Đã đọc</option>
+      </select>
+    </div>
+  </div>
+
+  <button type="button" (click)="addBook()">Thêm sách</button>
+  <button type="submit">Lưu tất cả</button>
+</form>
