@@ -1,4 +1,5 @@
 <form [formGroup]="bookForm" (ngSubmit)="submit()" class="form">
+  <body class = 'add-book'>
     <h2>Thêm mới sách</h2>
     <div class="form-control">
       <label for="title">Nhập tiêu đề:</label>
@@ -25,4 +26,7 @@
     </div>
   
     <button type="submit" [disabled]="bookForm.invalid">Thêm mới sách</button>
+    <div *ngIf="successMessage" class="success-message">{{successMessage}}</div>
+    <div *ngIf="errorMessage" class="error-message">{{errorMessage}}</div> 
+  </body>
 </form>   

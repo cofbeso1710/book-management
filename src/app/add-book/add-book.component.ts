@@ -9,6 +9,8 @@ import { BookService } from '../../book.service';
 })
 export class AddBookComponent {
   bookForm!: FormGroup;
+  successMessage: string ='';
+  errorMessage: string ='';
 
   constructor(private fb: FormBuilder, private bookService: BookService) {
     this.createForm();
@@ -26,16 +28,28 @@ export class AddBookComponent {
     if (this.bookForm.valid) {
 
       const newBook =  this.bookForm.value;
-      if(this.bookForm.get('author')?.value.lenght<5){
-        console.log('Chưa thỏa mãn')
-      }
+      // if(this.bookForm.get('author')?.value.lenght<5){
+      //   console.log('Chưa thỏa mãn')
+      //   this.errorMessage ='Tên tác giả phải nhiều hơn 5 kí tự!';
+      //     setTimeout(() => {
+      //       this.errorMessage ='';
+      //     }, 3000);
+      // }
       this.bookService.createBook(newBook).subscribe(
         (response) => {
           console.log('Sách đã được thêm:', response);
+          this.successMessage ='Sách đã được thêm thành công';
           this.bookForm.reset();
+          setTimeout(() => {
+            this.successMessage ='';
+          }, 3000);
         },
         (error) => {
           console.error('Lỗi khi thêm sách:', error);
+          this.errorMessage ='Sách không hợp lệ!';
+          setTimeout(() => {
+            this.errorMessage ='';
+          }, 3000);
         }
       );
     } else {
