@@ -6,15 +6,14 @@ import { Book } from './book';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(books: Book[], name: string, status: string): Book[] {
-    if (!name && status === 'Tất cả') {
+  transform(books: Book[], title: string): Book[] {
+    if (!title) {
       return books;
     }
 
     return books.filter(book => {
-      const matchesName = name ? book.name.toLowerCase().includes(name.toLowerCase()) : true;
-      const matchesStatus = status === 'Tất cả' ? true : book.status === status;
-      return matchesName && matchesStatus;
+      const matchesName = title ? book.title.toLowerCase().includes(title.toLowerCase()) : true;
+      return matchesName;
     });
   }
 

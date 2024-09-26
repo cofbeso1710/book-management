@@ -7,20 +7,26 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { SearchModule } from './search/search.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from '../filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookManagementComponent,
     AddBookComponent,
-    FilterPipe
+    FilterPipe,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SearchModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

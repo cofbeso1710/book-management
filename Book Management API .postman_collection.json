@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "f8fdb944-4ba1-4dd8-bb8e-0526712e6550",
+		"name": "Book Management API ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15140891",
+		"_collection_link": "https://warped-eclipse-86761.postman.co/workspace/f5af4219-2a86-445a-8140-0a6774e371aa/collection/15140891-f8fdb944-4ba1-4dd8-bb8e-0526712e6550?action=share&source=collection_link&creator=15140891"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\": \"Harriet123\",\n\t\"email\": \"harriet@yahoo.com\",\n\t\"password\": \"harriet\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://book-management-sys.herokuapp.com/api/user",
+					"protocol": "https",
+					"host": [
+						"book-management-sys",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"harriet@yahoo.com\",\n\t\"password\": \"harriet\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://210.211.96.129:8777/api/user/login",
+					"protocol": "http",
+					"host": [
+						"210",
+						"211",
+						"96",
+						"129"
+					],
+					"port": "8777",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmYyNzczOTVhNTMwZTkxZTc4M2RkYTciLCJlbWFpbCI6ImhhcnJpZXRAeWFob28uY29tIiwidXNlck5hbWUiOiJIYXJyaWV0MTIzIiwiaWF0IjoxNzI3MTY2Mjc3fQ.a3eSSzzWFOlNrUXjQ8EFm5_Mn1vxqI-cQjKBrhlXEOY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmYyNzczOTVhNTMwZTkxZTc4M2RkYTciLCJlbWFpbCI6ImhhcnJpZXRAeWFob28uY29tIiwidXNlck5hbWUiOiJIYXJyaWV0MTIzIiwiaWF0IjoxNzI3MTY2NDgzfQ.TGHkKvcpQz32R6wjygiUxCf1gpPxFoV5xIIxiGh9oQY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Atomic Habit\",\n\t\"isbn\": \"80-47-3901\",\n\t\"author\": \"James Clear\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://210.211.96.129:8777/api/books",
+					"protocol": "http",
+					"host": [
+						"210",
+						"211",
+						"96",
+						"129"
+					],
+					"port": "8777",
+					"path": [
+						"api",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmYyNzczOTVhNTMwZTkxZTc4M2RkYTciLCJlbWFpbCI6ImhhcnJpZXRAeWFob28uY29tIiwidXNlck5hbWUiOiJIYXJyaWV0MTIzIiwiaWF0IjoxNzI3MTY2NDgzfQ.TGHkKvcpQz32R6wjygiUxCf1gpPxFoV5xIIxiGh9oQY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Atomic Habit\",\n\t\"isbn\": \"80-47-3900\",\n\t\"author\": \"James Clear\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://210.211.96.129:8777/api/books",
+					"protocol": "http",
+					"host": [
+						"210",
+						"211",
+						"96",
+						"129"
+					],
+					"port": "8777",
+					"path": [
+						"api",
+						"books"
+					]
+				},
+				"description": "This Endpoint fetches all the books belonging to a particular user"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWQzMTIyM2MyOGVkZDAwMTdkNjBkZGUiLCJlbWFpbCI6ImhhcnJpZXRAeWFob28uY29tIiwidXNlck5hbWUiOiJIYXJyaWV0MTIzIiwiaWF0IjoxNTkwODkxMjU4fQ.3TMnniA2DOWL0wQfPWpBwlbcWYHFCDGUyZE9d_Ox430",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Atomic Behavior\",\n\t\"isbn\": \"80-00-000\",\n\t\"author\": \"James Jones\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://210.211.96.129:8777/api/books/5ed3142ec28edd0017d60ddf",
+					"protocol": "http",
+					"host": [
+						"210",
+						"211",
+						"96",
+						"129"
+					],
+					"port": "8777",
+					"path": [
+						"api",
+						"books",
+						"5ed3142ec28edd0017d60ddf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmYyNzczOTVhNTMwZTkxZTc4M2RkYTciLCJlbWFpbCI6ImhhcnJpZXRAeWFob28uY29tIiwidXNlck5hbWUiOiJIYXJyaWV0MTIzIiwiaWF0IjoxNzI3MTY2NDgzfQ.TGHkKvcpQz32R6wjygiUxCf1gpPxFoV5xIIxiGh9oQY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Atomic Behavior\",\n\t\"isbn\": \"80-00-000\",\n\t\"author\": \"James Jones\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://210.211.96.129:8777/api/books/66f279603e721ef3aa6dc961",
+					"protocol": "http",
+					"host": [
+						"210",
+						"211",
+						"96",
+						"129"
+					],
+					"port": "8777",
+					"path": [
+						"api",
+						"books",
+						"66f279603e721ef3aa6dc961"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

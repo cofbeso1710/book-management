@@ -1,42 +1,39 @@
-<div class="search-section">
-    <app-input label="Tìm kiếm theo tên" [(ngModel)]="name"></app-input>
-    <app-select label="Lọc theo trạng thái" [(ngModel)]="status" [options]="['Đã đọc', 'Chưa đọc']"></app-select>
-  </div>
-  
+  <div class="search-section">
+    <app-input label="Tìm kiếm theo tên" [(ngModel)]="title"></app-input>
+  </div> 
+
   <table class="book-table">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Tên sách</th>
-        <th>Trạng thái</th>
-        <th>Ngày mua</th>
-        <th>Ngày tạo</th>
+        <th>Tên</th>
+        <th>ISBN</th>
+        <th>Tác giả</th>
+        <th>Thời gian tạo</th>
         <th>Tùy chọn</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let book of books | filter: name: status">
-        <td>{{ book.id }}</td>
+      <tr *ngFor="let book of books | filter: title">
+        <td>{{ book._id }}</td>
         <td>
-          <span *ngIf="!book.editing">{{ book.name }}</span>
-          <input *ngIf="book.editing" [(ngModel)]="book.name" />
-        </td>
-        <td [ngClass]="{'read': book.status === 'Đã đọc', 'unread': book.status === 'Chưa đọc'}">
-          <span *ngIf="!book.editing">{{ book.status }}</span>
-          <select *ngIf="book.editing" [(ngModel)]="book.status">
-            <option value="Đã đọc">Đã đọc</option>
-            <option value="Chưa đọc">Chưa đọc</option>
-          </select>
+          <span *ngIf="editingBook?._id !== book._id">{{ book.title }}</span>
+          <input *ngIf="editingBook?._id === book._id" [(ngModel)]="book.title" />
         </td>
         <td>
-          <span *ngIf = "!book.editing">{{book.purchaseDate}}</span>
-          <input *ngIf="book.editing" [(ngModel)]="book.purchaseDate" type="date"/>
+          <span *ngIf="editingBook?._id !== book._id">{{ book.isbn }}</span>
+          <input *ngIf="editingBook?._id === book._id" [(ngModel)]="book.isbn" />
         </td>
-        <td>{{ book.createdAt | date: 'short' }}</td>
         <td>
-          <button *ngIf="!book.editing" (click)="editBook(book)">Sửa</button>
-          <button *ngIf="book.editing" (click)="saveBook(book)">Lưu</button>
-          <button (click)="deleteBook(book.id)">Xóa</button>
+          <span *ngIf="editingBook?._id !== book._id">{{ book.author }}</span>
+          <input *ngIf="editingBook?._id === book._id" [(ngModel)]="book.author" />
+        </td>
+        <td>{{ book.created | date:'short'}}</td>
+        <td>
+          <button *ngIf="editingBook?._id !== book._id" (click)="editBook(book)">Sửa</button>
+          <button *ngIf="editingBook?._id === book._id" (click)="saveBook()">Lưu</button>
+          <button *ngIf="editingBook?._id" (click)="cancelEdit()">Hủy</button>
+          <button (click)="deleteBook(book._id)">Xóa</button>
         </td>
       </tr>
     </tbody>

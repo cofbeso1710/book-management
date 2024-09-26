@@ -1,9 +1,8 @@
 export interface Book {
-    id: number;
-    name: string;
-    status: 'Đã đọc' | 'Chưa đọc';
-    editing: boolean;
-    purchaseDate: string;
-    createdAt?: Date;
-  }
+  _id: string;
+  title: string;
+  isbn: string;
+  author: string;
+  created: Date
+}
   
