@@ -1,27 +1,28 @@
-<form [formGroup]="bookForm" (ngSubmit)="submit()">
-  <div>
-    <label for="title">Tên sách:</label>
-    <input id="title" formControlName="title" placeholder="Nhập tên" />
-    <div *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched" class="error">
-      Nhập tên là bắt buộc
+<form [formGroup]="bookForm" (ngSubmit)="submit()" class="form">
+    <h2>Thêm mới sách</h2>
+    <div class="form-control">
+      <label for="title">Nhập tiêu đề:</label>
+      <input id="title" formControlName="title" placeholder="Nhập tên" />
+      <div *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched" class="error">
+        Nhập tên là bắt buộc
+      </div> 
     </div>
-  </div>
 
-  <div>
-    <label for="isbn">ISBN:</label>
-    <input id="isbn" formControlName="isbn" placeholder="Nhập ISBN" />
-    <div *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched" class="error">
-      Nhập ISBN là bắt buộc
+    <div class="form-control">
+      <label for="isbn">Nhập ISBN:</label>
+      <input id="isbn" formControlName="isbn" placeholder="Nhập ISBN" />
+      <div *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched" class="error">
+        Nhập ISBN là bắt buộc
+      </div>
     </div>
-  </div>
-
-  <div>
-    <label for="author">Tên tác giả:</label>
-    <input id="author" formControlName="author" placeholder="Nhập tên tác giả" />
-    <div *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched" class="error">
-      Nhập tên tác giả là bắt buộc
+   
+    <div class="form-control"> 
+      <label for="author">Nhập tên tác giả:</label>
+      <input id="author" formControlName="author" placeholder="Nhập tên tác giả" />
+      <div *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched" class="error">
+        Nhập tên tác giả là bắt buộc
+      </div>  
     </div>
-  </div>
-
-  <button type="submit" [disabled]="bookForm.invalid">Thêm mới sách</button>
-</form>
+  
+    <button type="submit" [disabled]="bookForm.invalid">Thêm mới sách</button>
+</form>   
