@@ -11,8 +11,7 @@ const routes: Routes = [
   { path: 'home', component: BookComponent, children: [
     {path: 'book-management', component:BookManagementComponent},
     {path: 'add-book',component:AddBookComponent},
-    
-  ], canActivate: [AuthenticationGuard] },
+  ], canActivate:[AuthenticationGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },

@@ -43,7 +43,7 @@ export class RegisterComponent {
           email: this.registerForm.value.email,
           password: this.registerForm.value.password
         };
-        this.http.post('http://210.211.96.129:8777/api/user/register', registerData).subscribe(
+        this.http.post('http://210.211.96.129:8777/api/user', registerData).subscribe(
           (response: any) => {
             console.log('Đăng ký thành công:',response);
             this.router.navigate(['login']);

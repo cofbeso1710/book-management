@@ -12,11 +12,9 @@ export class BookComponent {
 
     logout() {
         this.authService.logout();
-      }
-
-    selectedComponent: string = 'book-management';
-    selectComponent(componentName: string) {
-    this.selectedComponent = componentName;
-    
-}
+    }
+//     selectedComponent: string = 'book-management';
+//     selectComponent(componentName: string) {
+//     this.selectedComponent = componentName;
+// }
 }

@@ -8,22 +8,13 @@ import { Book } from './book';
 })
 export class BookService {
   private apiUrl = 'http://210.211.96.129:8777/api/books';
+  private token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmYyNzczOTVhNTMwZTkxZTc4M2RkYTciLCJlbWFpbCI6ImhhcnJpZXRAeWFob28uY29tIiwidXNlck5hbWUiOiJIYXJyaWV0MTIzIiwiaWF0IjoxNzI3MTY2NDgzfQ.TGHkKvcpQz32R6wjygiUxCf1gpPxFoV5xIIxiGh9oQY';
 
   constructor(private http: HttpClient) {}
 
-  private getToken(): string | null{
-    return localStorage.getItem('authToken');
+  private getHeaders(): HttpHeaders{
+    return new HttpHeaders().set('x-auth-token', this.token);
   }
-
-  private getHeaders(): HttpHeaders {
-    const token = this.getToken();
-    let headers = new HttpHeaders();
-    if (token) {
-      headers = headers.set('x-auth-token',token);
-    }
-    return headers;
-  }
-
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.apiUrl, { headers: this.getHeaders() });
   }
