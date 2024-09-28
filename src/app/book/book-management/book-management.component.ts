@@ -54,6 +54,8 @@ export class BookManagementComponent implements OnInit {
   }
 
   deleteBook(bookId: string){
+    const confirmDelete = window.confirm('Bạn có chắc chắn muốn xóa cuốn sách này không?');
+    if (confirmDelete) {
     this.bookService.deleteBook(bookId).subscribe(
       () => {
         this.books = this.books.filter(book => book._id !== bookId);
@@ -65,3 +67,4 @@ export class BookManagementComponent implements OnInit {
   }
 }
 
+}
