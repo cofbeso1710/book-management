@@ -12,7 +12,6 @@ export class BookComponent {
 
     logout() {
         this.authService.logout();
-        console.log('Xóa token',)
       }
 
     selectedComponent: string = 'book-management';
