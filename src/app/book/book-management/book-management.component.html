@@ -1,0 +1,42 @@
+
+  <div class="search-section">
+    <app-input label="Tìm kiếm tên sách" [(ngModel)]="title"></app-input>
+    <app-input label="Tìm kiếm tác giả" [(ngModel)]="author"></app-input>
+  </div> 
+
+  <table class="book-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>ISBN</th>
+        <th>Tác giả</th>
+        <th>Thời gian tạo</th>
+        <th>Tùy chọn</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books | filter: title: author">
+        <td>{{ book._id }}</td>
+          <td>
+            <span *ngIf="editingBook?._id !== book._id">{{ book.title }}</span>
+            <input *ngIf="editingBook?._id === book._id" [(ngModel)]="book.title"/>
+          </td>
+          <td>
+            <span *ngIf="editingBook?._id !== book._id">{{ book.isbn }}</span>
+            <input *ngIf="editingBook?._id === book._id" [(ngModel)]="book.isbn" />
+          </td>
+          <td>
+            <span *ngIf="editingBook?._id !== book._id">{{ book.author }}</span>
+            <input *ngIf="editingBook?._id === book._id" [(ngModel)]="book.author" />
+          </td>
+        <td>{{ book.created | date:'short'}}</td>
+        <td>
+          <button *ngIf="editingBook?._id !== book._id" (click)="editBook(book)">Sửa</button>
+          <button *ngIf="editingBook?._id === book._id" (click)="saveBook()">Lưu</button>
+          <button (click)="deleteBook(book._id)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

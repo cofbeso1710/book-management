@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../../book.service';
-import { Book } from '../../book';
-import { error } from 'console';
+import { BookService } from '../book.service';
+import { Book } from '../book';
 
 @Component({
   selector: 'book-management',
@@ -10,6 +9,7 @@ import { error } from 'console';
 })
 export class BookManagementComponent implements OnInit {
   title: string ='';
+  author: string ='';
   books: Book[]=[];
   editingBook: Book | null=null;
 
@@ -31,13 +31,15 @@ export class BookManagementComponent implements OnInit {
   }
   
   editBook(book: Book) {
-    this.editingBook = {...book};
+    this.editingBook =book
   }
   
   saveBook() {
     if (this.editingBook) {
+      console.log('Dữ liệu chuẩn bị gi lên API', this.editingBook);
       this.bookService.updateBook(this.editingBook._id!, this.editingBook).subscribe(
         updateBook => {
+          console.log('Dữ liệu sau khi cập nhật:', updateBook);
           const index = this.books.findIndex(book => book._id === updateBook._id);
           if (index !== -1) {
             this.books[index] = updateBook;
@@ -50,10 +52,6 @@ export class BookManagementComponent implements OnInit {
       )
     }
   }
-
-  cancelEdit() {
-    this.editingBook = null;
-  };
 
   deleteBook(bookId: string){
     this.bookService.deleteBook(bookId).subscribe(

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
-import { BookService } from '../../book.service';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'add-book',
@@ -28,13 +28,6 @@ export class AddBookComponent {
     if (this.bookForm.valid) {
 
       const newBook =  this.bookForm.value;
-      // if(this.bookForm.get('author')?.value.lenght<5){
-      //   console.log('Chưa thỏa mãn')
-      //   this.errorMessage ='Tên tác giả phải nhiều hơn 5 kí tự!';
-      //     setTimeout(() => {
-      //       this.errorMessage ='';
-      //     }, 3000);
-      // }
       this.bookService.createBook(newBook).subscribe(
         (response) => {
           console.log('Sách đã được thêm:', response);

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';  // Import đúng từ @angular/router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +35,7 @@ export class LoginComponent {
         (response: any) => {
           console.log('Đăng nhập thành công:', response);
           localStorage.setItem('authToken', response.token); 
-          this.router.navigate(['/book-management']); 
+          this.router.navigate(['home']); 
         },
         (error) => {
           console.error('Đăng nhập thất bại:', error);

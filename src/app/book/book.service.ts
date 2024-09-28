@@ -1,25 +1,3 @@
-// import { Injectable } from '@angular/core';
-// import { Book } from './book';
-// import { HttpClient } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-
-
-// private books: Book[]= [];
-
-//   // addBooks(newBooks: Book[]) {
-//   //   this.books.push(...newBooks);
-//   //   console.log('Sách đã được thêm:', this.books);
-//   // }
-
-//   // getBooks():Book[]{
-//   //   return this.books;
-//   // }
-
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';

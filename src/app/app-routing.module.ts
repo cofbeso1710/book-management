@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookManagementComponent } from './book-management/book-management.component';
-import { AddBookComponent } from './add-book/add-book.component';
 import { LoginComponent } from './login/login.component';
+import { BookComponent } from './book/book.component';
+import { BookManagementComponent } from './book/book-management/book-management.component';
+import { AddBookComponent } from './book/add-book/add-book.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  { path: 'book-management', component: BookManagementComponent, },
-  { path: 'add-book', component: AddBookComponent, },
+  { path: 'home', component: BookComponent, children: [
+    {path: 'book-management', component:BookManagementComponent},
+    {path: 'add-book',component:AddBookComponent}
+  ]},
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
